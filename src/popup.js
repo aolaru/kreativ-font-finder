@@ -66,7 +66,7 @@ async function scanActiveTab() {
   setStatus("Scanning typography on the active tab...");
 
   try {
-    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const tab = await getScanTab();
     if (!tab || !tab.id) {
       throw new Error("No active tab found.");
     }
@@ -100,6 +100,24 @@ async function scanActiveTab() {
   } finally {
     setLoading(false);
   }
+}
+
+async function getScanTab() {
+  const requestedTabId = getRequestedTabId();
+
+  if (requestedTabId) {
+    return chrome.tabs.get(requestedTabId);
+  }
+
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  return tab;
+}
+
+function getRequestedTabId() {
+  const value = new URLSearchParams(window.location.search).get("tabId");
+  const tabId = Number(value);
+
+  return Number.isInteger(tabId) && tabId > 0 ? tabId : null;
 }
 
 function isBlockedUrl(url) {

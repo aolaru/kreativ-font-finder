@@ -24,7 +24,7 @@ Kreativ Font Finder is a Chrome MV3 extension that scans the active page, lists 
 /Users/andreiolaru/Development/codexcode/kreativ-extensions/kreativ-font-finder
 ```
 
-The extension needs `activeTab`, `scripting`, `storage`, `clipboardWrite`, and `contextMenus` so it can scan only the tab you invoke it on, keep saved fonts locally, copy detected font stacks, and add right-click actions.
+The extension needs `activeTab`, `scripting`, `storage`, `clipboardWrite`, and `contextMenus` so it can scan only the tab you invoke it on, keep saved fonts locally, copy detected CSS font stacks, and add right-click actions.
 
 ## Context Menu
 
@@ -37,3 +37,13 @@ The extension needs `activeTab`, `scripting`, `storage`, `clipboardWrite`, and `
 The MVP does not send page text, images, or browsing content anywhere. It only opens Kreativ Font URLs when you click Search, a saved font, or a context menu action.
 
 Chrome blocks extensions on internal pages such as `chrome://`, the Chrome Web Store, and extension pages.
+
+## Release Package
+
+Create a Chrome Web Store ZIP from the repository root:
+
+```sh
+scripts/package-extension.sh
+```
+
+The script validates the JavaScript files and manifest, then writes a package to `dist/`.

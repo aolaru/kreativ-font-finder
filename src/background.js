@@ -45,16 +45,37 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 async function openPopup(tab) {
-  if (!chrome.action.openPopup) {
-    return;
+  try {
+    if (chrome.action.openPopup) {
+      const options = tab && Number.isInteger(tab.windowId) ? { windowId: tab.windowId } : undefined;
+      if (options) {
+        await chrome.action.openPopup(options);
+      } else {
+        await chrome.action.openPopup();
+      }
+      return;
+    }
+  } catch {
+    // Fall back below for Chrome versions or windows that cannot host action popups.
   }
 
-  try {
-    const options = tab && Number.isInteger(tab.windowId) ? { windowId: tab.windowId } : undefined;
-    await chrome.action.openPopup(options);
-  } catch {
-    // Chrome rejects this on older versions or if the target window cannot host the popup.
+  openStandaloneFinder(tab);
+}
+
+function openStandaloneFinder(tab) {
+  const url = new URL(chrome.runtime.getURL("popup.html"));
+  const createOptions = { url: url.toString() };
+
+  if (tab && Number.isInteger(tab.id) && tab.id > 0) {
+    url.searchParams.set("tabId", String(tab.id));
+    createOptions.url = url.toString();
   }
+
+  if (tab && Number.isInteger(tab.windowId)) {
+    createOptions.windowId = tab.windowId;
+  }
+
+  chrome.tabs.create(createOptions);
 }
 
 function openKreativSearch(selectionText) {

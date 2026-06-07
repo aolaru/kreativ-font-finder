@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kreativ Font Finder</title>
+    <link rel="stylesheet" href="src/popup.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">K</div>
+          <div class="brand-copy">
+            <h1>Kreativ Font</h1>
+            <p id="pageLabel">Font Finder</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button id="clearButton" class="secondary-button" type="button">Clear</button>
+          <button id="rescanButton" class="primary-button" type="button">Scan</button>
+        </div>
+      </header>
+
+      <section class="status-strip" aria-live="polite">
+        <div>
+          <span id="fontCount" class="metric">0</span>
+          <span class="metric-label">fonts</span>
+        </div>
+        <div>
+          <span id="elementCount" class="metric">0</span>
+          <span class="metric-label">text items</span>
+        </div>
+      </section>
+
+      <label class="filter-label" for="filterInput">Filter</label>
+      <input id="filterInput" class="filter-input" type="search" placeholder="Search detected fonts" autocomplete="off">
+
+      <p id="statusText" class="status-text">Ready to scan the current tab.</p>
+
+      <section id="results" class="results" aria-label="Detected fonts"></section>
+
+      <section id="emptyState" class="empty-state" hidden>
+        <h2>No fonts found</h2>
+        <p>This page may not expose readable text, or Chrome may block extension access here.</p>
+      </section>
+
+      <section class="favorites-panel">
+        <div class="section-heading">
+          <h2>Saved</h2>
+          <span id="favoriteCount">0</span>
+        </div>
+        <div id="favorites" class="favorites"></div>
+      </section>
+
+      <footer class="footer-note">
+        Font names open as searches on kreativfont.com. Page content stays local.
+      </footer>
+    </main>
+
+    <script src="src/popup.js"></script>
+  </body>
+</html>

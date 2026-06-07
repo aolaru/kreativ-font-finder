@@ -496,10 +496,10 @@
     style.id = HIGHLIGHT_STYLE_ID;
     style.textContent = `
       .${HIGHLIGHT_CLASS} {
-        outline: 2px solid #0b6f61 !important;
+        outline: 2px solid #4a4aff !important;
         outline-offset: 2px !important;
-        background-color: rgba(243, 200, 75, 0.25) !important;
-        box-shadow: 0 0 0 4px rgba(11, 111, 97, 0.15) !important;
+        background-color: rgba(255, 51, 102, 0.12) !important;
+        box-shadow: 0 0 0 4px rgba(74, 74, 255, 0.14) !important;
       }
     `;
     document.documentElement.appendChild(style);

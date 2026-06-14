@@ -2,7 +2,7 @@
 
 Last updated: June 7, 2026
 
-Kreativ Font Finder is a Chrome extension that helps users inspect typography on the active webpage, save favorite font discoveries locally, and open related searches on Kreativ Font.
+Kreativ Font Finder is a Chrome extension that helps users inspect typography on the active webpage, save favorite font discoveries locally, and open related font searches.
 
 ## Data Processed Locally
 
@@ -18,9 +18,10 @@ You can remove saved fonts from the extension popup at any time.
 
 ## Data Sent Only After User Action
 
-Kreativ Font Finder opens Kreativ Font URLs only after explicit user action:
+Kreativ Font Finder opens external URLs only after explicit user action:
 
-- Clicking Search for a detected or saved font opens a Kreativ Font search URL for that font name.
+- Clicking a search button for a detected font opens the chosen search provider for that font name. Current destinations are Kreativ Font, MyFonts, and Creative Market.
+- Clicking a saved font opens a Kreativ Font search URL for that font name.
 - Selecting text, right-clicking, and choosing the search context menu item opens a Kreativ Font search URL for the selected text.
 - Right-clicking an image and choosing the image identifier context menu item opens the Kreativ Font Identifier page.
 

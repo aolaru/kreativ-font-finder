@@ -1,7 +1,38 @@
 "use strict";
 
-const KREATIV_SEARCH_ORIGIN = "https://kreativfont.com/";
 const FAVORITES_KEY = "kreativFontFavorites";
+const SEARCH_DESTINATIONS = [
+  {
+    id: "kreativ",
+    label: "Kreativ",
+    title: "Search on Kreativ Font",
+    url(family) {
+      const url = new URL("https://kreativfont.com/");
+      url.searchParams.set("s", family);
+      return url.toString();
+    }
+  },
+  {
+    id: "myfonts",
+    label: "MyFonts",
+    title: "Search on MyFonts",
+    url(family) {
+      const url = new URL("https://www.myfonts.com/search");
+      url.searchParams.set("query", family);
+      return url.toString();
+    }
+  },
+  {
+    id: "creative-market",
+    label: "Creative Market",
+    title: "Search on Creative Market",
+    url(family) {
+      const url = new URL("https://creativemarket.com/search");
+      url.searchParams.set("q", family);
+      return url.toString();
+    }
+  }
+];
 
 const state = {
   activeTabId: null,
@@ -244,6 +275,25 @@ function createFontCard(font) {
   stack.append(stackLabel, stackValue);
   card.appendChild(stack);
 
+  const searchLinks = document.createElement("div");
+  searchLinks.className = "font-search-links";
+
+  const searchLabel = document.createElement("span");
+  searchLabel.textContent = "Search";
+  searchLinks.appendChild(searchLabel);
+
+  SEARCH_DESTINATIONS.forEach((destination) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = destination.id === "kreativ" ? "primary-search-link" : "";
+    button.textContent = destination.label;
+    button.title = `${destination.title} for ${font.family}`;
+    button.addEventListener("click", () => openFontSearch(destination.id, font.family));
+    searchLinks.appendChild(button);
+  });
+
+  card.appendChild(searchLinks);
+
   const actions = document.createElement("div");
   actions.className = "font-actions";
 
@@ -251,12 +301,6 @@ function createFontCard(font) {
   highlightButton.type = "button";
   highlightButton.textContent = "Highlight";
   highlightButton.addEventListener("click", () => highlightFont(font.family));
-
-  const searchButton = document.createElement("button");
-  searchButton.type = "button";
-  searchButton.className = "search-action";
-  searchButton.textContent = "Search";
-  searchButton.addEventListener("click", () => openKreativSearch(font.family));
 
   const copyButton = document.createElement("button");
   copyButton.type = "button";
@@ -270,7 +314,7 @@ function createFontCard(font) {
   saveButton.textContent = isFavorite(font.family) ? "Saved" : "Save";
   saveButton.addEventListener("click", () => toggleFavorite(font));
 
-  actions.append(highlightButton, searchButton, copyButton, saveButton);
+  actions.append(highlightButton, copyButton, saveButton);
   card.appendChild(actions);
 
   return card;
@@ -338,16 +382,20 @@ async function clearHighlights() {
   }
 }
 
-function openKreativSearch(family) {
-  const url = new URL(KREATIV_SEARCH_ORIGIN);
-  url.searchParams.set("s", family);
+function openFontSearch(destinationId, family) {
+  const destination = SEARCH_DESTINATIONS.find((item) => item.id === destinationId) || SEARCH_DESTINATIONS[0];
+  const url = destination.url(family);
 
   if (hasExtensionApi()) {
-    chrome.tabs.create({ url: url.toString() });
+    chrome.tabs.create({ url });
     return;
   }
 
-  window.open(url.toString(), "_blank", "noopener");
+  window.open(url, "_blank", "noopener");
+}
+
+function openKreativSearch(family) {
+  openFontSearch("kreativ", family);
 }
 
 async function copyFontStack(font) {

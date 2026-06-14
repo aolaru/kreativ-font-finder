@@ -4,7 +4,7 @@ Use this as a working draft for the Chrome Web Store Developer Dashboard privacy
 
 ## Single Purpose
 
-Kreativ Font Finder helps users inspect typography on the active webpage, save font discoveries locally, and open related searches or tools on Kreativ Font.
+Kreativ Font Finder helps users inspect typography on the active webpage, save font discoveries locally, and open related font searches or tools.
 
 ## Permission Justifications
 
@@ -32,13 +32,13 @@ Used to add right-click actions for opening the font finder, searching selected 
 
 Select: No, this extension does not use remote code.
 
-Rationale: All executable JavaScript, HTML, and CSS is packaged in the extension. The extension opens Kreativ Font URLs only in normal browser tabs after user action.
+Rationale: All executable JavaScript, HTML, and CSS is packaged in the extension. The extension opens external search/tool URLs only in normal browser tabs after user action.
 
 ## Data Usage Disclosure
 
 Suggested conservative disclosure:
 
-- Website content: The extension processes visible text samples and computed typography from the active tab locally so it can show detected font usage. Selected text is sent to Kreativ Font only when the user explicitly chooses the selected-text search context menu action.
+- Website content: The extension processes visible text samples and computed typography from the active tab locally so it can show detected font usage. Font names or selected text are sent to an external search destination only when the user explicitly clicks a search or context menu action.
 
 Do not select:
 
@@ -53,7 +53,7 @@ Do not select:
 
 ## Limited Use Certification Notes
 
-The extension uses data only to provide font inspection, saved favorites, and user-triggered Kreativ Font searches/tools. It does not sell user data, use data for advertising, use data for creditworthiness or lending, or transfer data except as described in the user-triggered Kreativ Font URL actions.
+The extension uses data only to provide font inspection, saved favorites, and user-triggered font search/tool links. It does not sell user data, use data for advertising, use data for creditworthiness or lending, or transfer data except as described in the user-triggered external URL actions.
 
 ## Privacy Policy URL
 

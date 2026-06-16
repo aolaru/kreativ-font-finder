@@ -1,6 +1,6 @@
-# Chrome Web Store Privacy Field Draft
+# Chrome Web Store Privacy Details
 
-Use this as a working draft for the Chrome Web Store Developer Dashboard privacy fields. Keep this wording aligned with `PRIVACY.md`.
+Reference copy for the Chrome Web Store Developer Dashboard privacy fields. Keep this wording aligned with `PRIVACY.md`.
 
 ## Single Purpose
 
@@ -30,17 +30,17 @@ Used to add right-click actions for opening the font finder, searching selected 
 
 ## Remote Code
 
-Select: No, this extension does not use remote code.
+Answer: No, this extension does not use remote code.
 
 Rationale: All executable JavaScript, HTML, and CSS is packaged in the extension. The extension opens external search/tool URLs only in normal browser tabs after user action.
 
 ## Data Usage Disclosure
 
-Suggested conservative disclosure:
+Disclosure:
 
 - Website content: The extension processes visible text samples and computed typography from the active tab locally so it can show detected font usage. Font names or selected text are sent to an external search destination only when the user explicitly clicks a search or context menu action.
 
-Do not select:
+Data types not collected:
 
 - Personally identifiable information
 - Health information
@@ -57,6 +57,6 @@ The extension uses data only to provide font inspection, saved favorites, and us
 
 ## Privacy Policy URL
 
-Use a published URL for `PRIVACY.md`, for example:
+Published privacy policy URL:
 
 https://github.com/aolaru/kreativ-font-finder/blob/main/PRIVACY.md

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Kreativ Font Finder",
   "version": "1.0.0",
-  "description": "Find fonts on any webpage and search matching results on Kreativ Font.",
+  "description": "Find fonts on any webpage, highlight font usage, and search matching font results.",
   "permissions": [
     "activeTab",
     "clipboardWrite",

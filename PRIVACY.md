@@ -1,6 +1,6 @@
 # Kreativ Font Finder Privacy Policy
 
-Last updated: June 7, 2026
+Last updated: June 14, 2026
 
 Kreativ Font Finder is a Chrome extension that helps users inspect typography on the active webpage, save favorite font discoveries locally, and open related font searches.
 
